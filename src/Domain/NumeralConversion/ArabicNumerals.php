@@ -8,7 +8,7 @@ class ArabicNumerals
     {
     }
 
-    public static function fromString(string $value): static
+    public static function fromValue(string $value): static
     {
         return new static($value);
     }

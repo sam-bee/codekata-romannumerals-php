@@ -6,6 +6,14 @@ class NumeralConverter
 {
     public function convert(RomanNumerals $romanNumerals): ArabicNumerals
     {
-        return ArabicNumerals::fromString('1');
+        $romanSymbols = $romanNumerals->getSymbols();
+
+        $numericalValue = 0;
+
+        foreach ($romanSymbols as $romanSymbol) {
+            ++$numericalValue;
+        }
+
+        return ArabicNumerals::fromValue($numericalValue);
     }
 }

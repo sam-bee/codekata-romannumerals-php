@@ -67,7 +67,7 @@ class ServiceLevelContext implements Context
     #[Then('I should get :expectedResult')]
     public function iShouldGet(string $expectedResult): void
     {
-        $expectedResult = ArabicNumerals::fromString($expectedResult);
+        $expectedResult = ArabicNumerals::fromValue($expectedResult);
         $actualResult = $this->arabicNumerals;
         $same = $expectedResult->equals($actualResult);
         Assert::assertTrue($same);

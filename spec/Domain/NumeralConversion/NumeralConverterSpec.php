@@ -17,7 +17,15 @@ class NumeralConverterSpec extends ObjectBehavior
     function it_can_do_a_simple_conversion()
     {
         $romanNumerals = RomanNumerals::fromString('I');
-        $expectedResult = ArabicNumerals::fromString('1');
+        $expectedResult = ArabicNumerals::fromValue('1');
+        $actualResult = $this->convert($romanNumerals);
+        $actualResult->shouldBeLike($expectedResult);
+    }
+
+    function it_can_convert_roman_numerals_with_more_than_one_character()
+    {
+        $romanNumerals = RomanNumerals::fromString('II');
+        $expectedResult = ArabicNumerals::fromValue('2');
         $actualResult = $this->convert($romanNumerals);
         $actualResult->shouldBeLike($expectedResult);
     }
