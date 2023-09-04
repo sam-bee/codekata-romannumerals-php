@@ -33,4 +33,11 @@ class ArabicNumeralsSpec extends ObjectBehavior
         $this->add(3);
         $this->shouldBeLike($expectedResult);
     }
+
+    function it_can_be_subtracted_from()
+    {
+        $expectedResult = ArabicNumerals::fromValue(1994);
+        $this->subtract(3);
+        $this->shouldBeLike($expectedResult);
+    }
 }

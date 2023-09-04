@@ -13,9 +13,18 @@ class NumeralConverter
     {
         $arabicNumerals = ArabicNumerals::fromZeroValue();
         $romanSymbols = $romanNumerals->getSymbols();
+        $romanSymbolsInReverseOrder = array_reverse($romanSymbols);
+        $previousValue = -1;
 
-        foreach ($romanSymbols as $romanSymbol) {
-            $arabicNumerals->add($this->convertSymbol($romanSymbol));
+        foreach ($romanSymbolsInReverseOrder as $romanSymbol) {
+            $currentSymbolValue = $this->convertSymbol($romanSymbol);
+
+            if ($currentSymbolValue < $previousValue) {
+                $arabicNumerals->subtract($currentSymbolValue);
+            } else {
+                $arabicNumerals->add($this->convertSymbol($romanSymbol));
+            }
+            $previousValue = $currentSymbolValue;
         }
 
         return $arabicNumerals;

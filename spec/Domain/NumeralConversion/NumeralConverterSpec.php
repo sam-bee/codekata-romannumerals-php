@@ -37,4 +37,12 @@ class NumeralConverterSpec extends ObjectBehavior
         $actualResult = $this->convert($romanNumerals);
         $actualResult->shouldBeLike($expectedResult);
     }
+
+    function it_can_handle_roman_numerals_with_subtraction_needed()
+    {
+        $romanNumerals = RomanNumerals::fromString('IV');
+        $expectedResult = ArabicNumerals::fromValue('4');
+        $actualResult = $this->convert($romanNumerals);
+        $actualResult->shouldBeLike($expectedResult);
+    }
 }

@@ -27,4 +27,9 @@ class ArabicNumerals
     {
         $this->value += $valueToAdd;
     }
+
+    public function subtract(int $valueToSubtract): void
+    {
+        $this->value -= $valueToSubtract;
+    }
 }
