@@ -2,12 +2,15 @@
 
 namespace BehatContexts;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
+use Behat\Hook\BeforeScenario;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
 use RomanNumeralsKata\Domain\Greeting\Name;
+use RomanNumeralsKata\Domain\NumeralConversion\ArabicNumerals;
+use RomanNumeralsKata\Domain\NumeralConversion\NumeralConverter;
+use RomanNumeralsKata\Domain\NumeralConversion\RomanNumerals;
 use RomanNumeralsKata\Domain\Greeting\Greeter as GreetingService;
 use PHPUnit\Framework\Assert;
 
@@ -16,6 +19,18 @@ class ServiceLevelContext implements Context
     private Name $name;
 
     private string $result;
+
+    private RomanNumerals $romanNumerals;
+
+    private ArabicNumerals $arabicNumerals;
+
+    private NumeralConverter $numeralConverter;
+
+    #[BeforeScenario]
+    public function setUp(): void
+    {
+        $this->numeralConverter = new NumeralConverter();
+    }
 
     #[Given('my name is :name')]
     public function myNameIs(string $name): void
@@ -39,19 +54,22 @@ class ServiceLevelContext implements Context
     #[Given('my Roman numerals are :romanNumerals')]
     public function myRomanNumeralsAre(string $romanNumerals): void
     {
-        throw new PendingException();
+        $this->romanNumerals = RomanNumerals::fromString($romanNumerals);
     }
 
     #[When('I convert it to arabic numerals')]
     public function iConvertItToArabicNumerals(): void
     {
-        throw new PendingException();
+        $this->arabicNumerals = $this->numeralConverter->convert($this->romanNumerals);
     }
 
 
     #[Then('I should get :expectedResult')]
     public function iShouldGet(string $expectedResult): void
     {
-        throw new PendingException();
+        $expectedResult = ArabicNumerals::fromString($expectedResult);
+        $actualResult = $this->arabicNumerals;
+        $same = $expectedResult->equals($actualResult);
+        Assert::assertTrue($same);
     }
 }
