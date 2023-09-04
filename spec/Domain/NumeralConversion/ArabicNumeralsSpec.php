@@ -19,4 +19,18 @@ class ArabicNumeralsSpec extends ObjectBehavior
         $this->equals($same)->shouldBe(true);
         $this->equals($different)->shouldBe(false);
     }
+
+    function it_can_be_initialised_with_a_zero_value()
+    {
+        $this->beConstructedThrough('fromZeroValue', []);
+        $zero = ArabicNumerals::fromValue('0');
+        $this->equals($zero)->shouldBe(true);
+    }
+
+    function it_can_be_added_to()
+    {
+        $expectedResult = ArabicNumerals::fromValue(2000);
+        $this->add(3);
+        $this->shouldBeLike($expectedResult);
+    }
 }

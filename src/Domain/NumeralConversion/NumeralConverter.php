@@ -4,16 +4,25 @@ namespace RomanNumeralsKata\Domain\NumeralConversion;
 
 class NumeralConverter
 {
+    private const SYMBOL_MAP = [
+        'I' => 1,
+        'V' => 5,
+    ];
+
     public function convert(RomanNumerals $romanNumerals): ArabicNumerals
     {
+        $arabicNumerals = ArabicNumerals::fromZeroValue();
         $romanSymbols = $romanNumerals->getSymbols();
 
-        $numericalValue = 0;
-
         foreach ($romanSymbols as $romanSymbol) {
-            ++$numericalValue;
+            $arabicNumerals->add($this->convertSymbol($romanSymbol));
         }
 
-        return ArabicNumerals::fromValue($numericalValue);
+        return $arabicNumerals;
+    }
+
+    private function convertSymbol(string $romanSymbol): int
+    {
+        return static::SYMBOL_MAP[$romanSymbol];
     }
 }

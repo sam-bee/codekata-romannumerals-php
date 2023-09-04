@@ -29,4 +29,12 @@ class NumeralConverterSpec extends ObjectBehavior
         $actualResult = $this->convert($romanNumerals);
         $actualResult->shouldBeLike($expectedResult);
     }
+
+    function it_can_recognise_different_symbols()
+    {
+        $romanNumerals = RomanNumerals::fromString('VI');
+        $expectedResult = ArabicNumerals::fromValue('6');
+        $actualResult = $this->convert($romanNumerals);
+        $actualResult->shouldBeLike($expectedResult);
+    }
 }
