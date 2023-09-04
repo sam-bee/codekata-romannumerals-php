@@ -7,8 +7,13 @@ use RomanNumeralsKata\Domain\NumeralConversion\RomanNumerals;
 
 class RomanNumeralsSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    function let()
     {
-        $this->shouldHaveType(RomanNumerals::class);
+        $this->beConstructedThrough('fromString', ['VI']);
+    }
+
+    function it_can_return_individual_symbols()
+    {
+        $this->getSymbols()->shouldBe(['V', 'I']);
     }
 }
