@@ -15,6 +15,8 @@ class CliContext implements Context
     /** @var string[] $result */
     private array $result = [];
 
+    private string $romanNumerals;
+
     #[Given('my name is :name')]
     public function myNameIs(string $name): void
     {
@@ -36,19 +38,19 @@ class CliContext implements Context
     #[Given('my Roman numerals are :romanNumerals')]
     public function myRomanNumeralsAre(string $romanNumerals): void
     {
-        throw new PendingException();
+        $this->romanNumerals = $romanNumerals;
     }
 
     #[When('I convert it to arabic numerals')]
     public function iConvertItToArabicNumerals(): void
     {
-        throw new PendingException();
+        exec('php scripts/run.php convert ' . $this->romanNumerals . ' 2>/dev/null', $this->result);
     }
 
 
     #[Then('I should get :expectedResult')]
     public function iShouldGet(string $expectedResult): void
     {
-        throw new PendingException();
+        Assert::assertEquals([$expectedResult], $this->result);
     }
 }
