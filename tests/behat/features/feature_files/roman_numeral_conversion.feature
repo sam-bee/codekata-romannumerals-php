@@ -10,7 +10,7 @@ Feature: Converting Roman numerals
     When I convert it to arabic numerals
     Then I should get '1'
 
-  @wip
+
   Scenario: Converting a harder number
     Given my Roman numerals are 'MCMXCVII'
     When I convert it to arabic numerals
