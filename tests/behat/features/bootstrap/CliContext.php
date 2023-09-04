@@ -2,6 +2,7 @@
 
 namespace BehatContexts;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Step\Given;
 use Behat\Step\When;
@@ -30,5 +31,24 @@ class CliContext implements Context
     public function iShouldSee(string $expectedOutput): void
     {
         Assert::assertEquals([$expectedOutput], $this->result);
+    }
+
+    #[Given('my Roman numerals are :romanNumerals')]
+    public function myRomanNumeralsAre(string $romanNumerals): void
+    {
+        throw new PendingException();
+    }
+
+    #[When('I convert it to arabic numerals')]
+    public function iConvertItToArabicNumerals(): void
+    {
+        throw new PendingException();
+    }
+
+
+    #[Then('I should get :expectedResult')]
+    public function iShouldGet(string $expectedResult): void
+    {
+        throw new PendingException();
     }
 }
