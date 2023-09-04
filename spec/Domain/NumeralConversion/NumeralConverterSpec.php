@@ -45,4 +45,12 @@ class NumeralConverterSpec extends ObjectBehavior
         $actualResult = $this->convert($romanNumerals);
         $actualResult->shouldBeLike($expectedResult);
     }
+
+    function it_can_handle_all_the_symbols()
+    {
+        $romanNumerals = RomanNumerals::fromString('MDCLXVI');
+        $expectedResult = ArabicNumerals::fromValue('1666');
+        $actualResult = $this->convert($romanNumerals);
+        $actualResult->shouldBeLike($expectedResult);
+    }
 }
