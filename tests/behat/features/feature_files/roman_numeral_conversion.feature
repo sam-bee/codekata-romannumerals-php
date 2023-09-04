@@ -4,7 +4,7 @@ Feature: Converting Roman numerals
   I want to convert Roman to Arabic numerals.
 
 
-  @critical @wip
+  @critical
   Scenario: Converting any number
     Given my Roman numerals are 'I'
     When I convert it to arabic numerals

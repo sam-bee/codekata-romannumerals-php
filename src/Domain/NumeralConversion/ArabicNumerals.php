@@ -32,4 +32,9 @@ class ArabicNumerals
     {
         $this->value -= $valueToSubtract;
     }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
 }

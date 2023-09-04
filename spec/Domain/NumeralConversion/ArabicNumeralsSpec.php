@@ -40,4 +40,9 @@ class ArabicNumeralsSpec extends ObjectBehavior
         $this->subtract(3);
         $this->shouldBeLike($expectedResult);
     }
+
+    function it_can_be_printed()
+    {
+        $this->__toString()->shouldBe('1997');
+    }
 }
